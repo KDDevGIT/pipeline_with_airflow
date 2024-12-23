@@ -6,7 +6,8 @@
 - PS C:\Users\kdabc\pipeline_with_airflow> python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 
 <ins>Update docker-compose.yaml</ins>
-- AIRFLOW__CORE__FERNET_KEY: "4Wn3T8yiBaIbw25zhUZb0YwMff98ZMxHFAx35EW5oT0="
+- AIRFLOW__CORE__FERNET_KEY: "<Generated_Key>"
 
+<ins>restart docker</ins>
 docker-compose down 
 docker-compose up -d
