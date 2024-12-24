@@ -1,56 +1,50 @@
-<ins>For MySQL Local</ins>
-- mysql -u <username> -p #Login with MySQL credentials
-- CREATE DATABASE IF NOT EXISTS <DATABASE>; #creates database without overwrite errors
-- CREATE DATABASE <DATABASE>; #creates database 
-- SHOW DATABASES; #Shows all created databases.
-- USE <DATABASE>; #Use specific database
-- SHOW TABLES; #Show tables in database
-- DESCRIBE <DATABASE> #shows variables and variable types in the database
-- SELECT * FROM <TABLE>; #Shows all data stored in the table
-- SELECT * FROM <TABLE> LIMIT <N>; N = Number of Rows to display
-- DELETE FROM <TABLE>; #Deletes all data, keeps table structure
-- DROP TABLE <TABLE>; #removes entire table
+# MySQL and Docker Setup Guide
 
-<ins>Update Dockerfile and run this to rebuild to prevent dependency issues.</ins>
-- docker build -t custom_airflow:latest . 
+## <ins>MySQL Local Commands</ins>
 
-<ins>Update Image field in docker-compose.yaml for containers</ins>
-- image: custom_airflow:latest
+### General MySQL Operations
+- **Login**: `mysql -u <username> -p`  
+  Use your MySQL credentials to log in.
 
-<ins>Creating a table for loading examples in MySQL for API calls.</ins> 
-- keep in mind of the variable types returned
-- CREATE TABLE historical_6hour (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    observation_time DATETIME,
-    epoch_time BIGINT,
-    weather_text VARCHAR(255),
-    weather_icon INT,
-    has_precipitation BOOLEAN,
-    precipitation_type VARCHAR(255),
-    is_daytime BOOLEAN,
-    temperature_c FLOAT,
-    temperature_f FLOAT,
-    mobile_link TEXT,
-    link TEXT
-);
+- **Create a Database (safe)**:  
+  `CREATE DATABASE IF NOT EXISTS <DATABASE>;`  
+  Prevents overwriting an existing database.
 
-- CREATE TABLE etf_stock_data (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    timestamp DATETIME,
-    symbol VARCHAR(10),
-    open FLOAT,
-    high FLOAT,
-    low FLOAT,
-    close FLOAT,
-    volume BIGINT
-);
+- **Create a Database**:  
+  `CREATE DATABASE <DATABASE>;`  
 
-- CREATE TABLE etf_current_price (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    symbol VARCHAR(10) NOT NULL,
-    timestamp DATETIME NOT NULL,
-    current_price FLOAT NOT NULL
-);
+- **Show All Databases**:  
+  `SHOW DATABASES;`  
 
+- **Use a Specific Database**:  
+  `USE <DATABASE>;`  
 
+- **Show Tables in a Database**:  
+  `SHOW TABLES;`  
 
+- **Describe Table Structure**:  
+  `DESCRIBE <TABLE>;`  
+
+- **View Table Data**:  
+  `SELECT * FROM <TABLE>;`  
+
+- **View Limited Rows**:  
+  `SELECT * FROM <TABLE> LIMIT <N>;`  
+  `N` = Number of rows to display.
+
+- **Delete All Data in a Table**:  
+  `DELETE FROM <TABLE>;`  
+  *Note*: This keeps the table structure intact.
+
+- **Remove a Table Completely**:  
+  `DROP TABLE <TABLE>;`  
+
+---
+
+## <ins>Updating Dockerfile</ins>
+
+### Build a Custom Airflow Docker Image
+1. Update your `Dockerfile` as needed.
+2. Rebuild the image:  
+   ```bash
+   docker build -t custom_airflow:latest .
