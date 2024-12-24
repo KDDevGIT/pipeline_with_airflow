@@ -1,23 +1,23 @@
-### For MySql Local
-mysql -u <username> -p #Login with MySQL credentials
-CREATE DATABASE IF NOT EXISTS <DATABASE>; #creates database without overwrite errors
-CREATE DATABASE <DATABASE>; #creates database 
-SHOW DATABASES; #Shows all created databases.
-USE <DATABASE>; #Use specific database
-SHOW TABLES; #Show tables in database
-DESCRIBE <DATABASE> #shows variables and variable types in the database
-SELECT * FROM <TABLE>; #Shows all data stored in the table
-SELECT * FROM <TABLE> LIMIT <N>; N = Number of Rows to display
-DELETE FROM <TABLE>; #Deletes all data, keeps table structure
-DROP TABLE <TABLE>; #removes entire table
+<ins>For MySQL Local</ins>
+- mysql -u <username> -p #Login with MySQL credentials
+- CREATE DATABASE IF NOT EXISTS <DATABASE>; #creates database without overwrite errors
+- CREATE DATABASE <DATABASE>; #creates database 
+- SHOW DATABASES; #Shows all created databases.
+- USE <DATABASE>; #Use specific database
+- SHOW TABLES; #Show tables in database
+- DESCRIBE <DATABASE> #shows variables and variable types in the database
+- SELECT * FROM <TABLE>; #Shows all data stored in the table
+- SELECT * FROM <TABLE> LIMIT <N>; N = Number of Rows to display
+- DELETE FROM <TABLE>; #Deletes all data, keeps table structure
+- DROP TABLE <TABLE>; #removes entire table
 
-### Update Dockerfile and run this to rebuild to prevent dependency issues.
-docker build -t custom_airflow:latest . 
+<ins>Update Dockerfile and run this to rebuild to prevent dependency issues.</ins>
+- docker build -t custom_airflow:latest . 
 
-### Update Image field in docker-compose.yaml for containers
-image: custom_airflow:latest
+<ins>Update Image field in docker-compose.yaml for containers</ins>
+- image: custom_airflow:latest
 
-### Creating a table for loading examples in MySQL for API calls. 
+<ins>Creating a table for loading examples in MySQL for API calls.</ins> 
 - keep in mind of the variable types returned
 - CREATE TABLE historical_6hour (
     id INT AUTO_INCREMENT PRIMARY KEY,
