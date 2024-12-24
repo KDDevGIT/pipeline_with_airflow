@@ -12,13 +12,14 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   airflow-webserver:
-    image: apache/airflow:2.6.1
+    image: custom_airflow:latest
     container_name: airflow_webserver
     depends_on:
       - postgres
       - airflow-scheduler
     environment:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
     ports:
@@ -30,7 +31,7 @@ services:
       - ./plugins:/opt/airflow/plugins
 
   airflow-scheduler:
-    image: apache/airflow:2.6.1
+    image: custom_airflow:latest
     container_name: airflow_scheduler
     depends_on:
       - postgres
@@ -45,7 +46,7 @@ services:
       - ./plugins:/opt/airflow/plugins
 
   airflow-init:
-    image: apache/airflow:2.6.1
+    image: custom_airflow:latest
     container_name: airflow_init
     depends_on:
       - postgres
@@ -55,8 +56,9 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
     command: >
       bash -c "
-      airflow db init
+      airflow db init &&
+      airflow db upgrade &&
+      airflow users create -u admin -p admin -f Admin -l User -r Admin -e admin@example.com
       "
-
 volumes:
   postgres_data:
