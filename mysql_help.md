@@ -36,8 +36,14 @@
   `DELETE FROM <TABLE>;`  
   *Note*: This keeps the table structure intact.
 
+- **Delete All Data and reset increment**:
+  `TRUNCATE TABLE <TABLE>;`
+
 - **Remove a Table Completely**:  
-  `DROP TABLE <TABLE>;`  
+  `DROP TABLE <TABLE>;` 
+
+- **Edit table column name**:
+  `ALTER TABLE <TABLE> CHANGE <original_name> <new_name> VARTYPE;` 
 
 ---
 
@@ -48,3 +54,4 @@
 2. Rebuild the image:  
    ```bash
    docker build -t custom_airflow:latest .
+

@@ -24,11 +24,13 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
     ports:
       - "8080:8080"
+      - "8050:8050"
     command: webserver
     volumes:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./graphs:/opt/airflow/graphs
 
   airflow-scheduler:
     image: custom_airflow:latest
@@ -44,6 +46,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
+      - ./graphs:/opt/airflow/graphs
 
   airflow-init:
     image: custom_airflow:latest

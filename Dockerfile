@@ -6,6 +6,13 @@ RUN pip install mysql-connector-python
 #Installs required dependecies for Yahoo Finance Data
 RUN pip install yfinance
 
+#Installs required dependencies for Plotting with Plotly/Dash
+RUN pip install dash 
+RUN pip install plotly 
+RUN pip install pandas 
+RUN pip install matplotlib
+RUN pip install pymysql
+
 # Switch to root user to install system level dependencies
 USER root
 
